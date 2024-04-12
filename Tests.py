@@ -67,5 +67,35 @@ class Tests(unittest.TestCase):
 
         self.assertEqual(world.getSnakePosition(), SVector(2, 0))
 
+    def test_givenDirectionUpThenDown_snakeStillMoveUp(self):
+        world = SWorld()
+        world.placeSnake(SVector(0, 3))
+        world.moveUp()
+        world.tick()
+        world.moveDown()
+        world.tick()
+
+        self.assertEqual(world.getSnakePosition(), SVector(0, 1))
+
+    def test_givenDirectionDownThenUp_snakeStillMoveDown(self):
+        world = SWorld()
+        world.placeSnake(SVector(0, 0))
+        world.moveDown()
+        world.tick()
+        world.moveUp()
+        world.tick()
+
+        self.assertEqual(world.getSnakePosition(), SVector(0, 2))
+
+    def test_givenDirectionLeftThenRight_snakeStillMoveLeft(self):
+        world = SWorld()
+        world.placeSnake(SVector(3, 0))
+        world.moveLeft()
+        world.tick()
+        world.moveRight()
+        world.tick()
+
+        self.assertEqual(world.getSnakePosition(), SVector(1, 0))
+
 if __name__ == '__main__':
     unittest.main()

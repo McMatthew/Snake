@@ -21,14 +21,17 @@ class SWorld:
         self.snakeLocation.y += self.snakeDirection.y
 
     def moveRight(self):
-        self.snakeDirection = self.__directionRight
+        if self.snakeDirection is not self.__directionLeft:
+            self.snakeDirection = self.__directionRight
 
     def moveLeft(self):
         if self.snakeDirection is not self.__directionRight:
             self.snakeDirection = self.__directionLeft
         
     def moveUp(self):
-        self.snakeDirection = self.__directionUp
+        if self.snakeDirection is not self.__directionDown:
+            self.snakeDirection = self.__directionUp
 
     def moveDown(self):
-        self.snakeDirection = self.__directionDown
+        if self.snakeDirection is not self.__directionUp:
+            self.snakeDirection = self.__directionDown
