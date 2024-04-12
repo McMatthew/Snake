@@ -21,3 +21,9 @@ class SWorld:
 
     def moveLeft(self):
         self.snakeDirection = SVector(-1, 0)
+
+    def moveUp(self):
+        self.snakeDirection = SVector(0, -1)
+
+    def moveDown(self):
+        self.snakeDirection = SVector(0, 1)
