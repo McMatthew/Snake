@@ -33,7 +33,13 @@ class Tests(unittest.TestCase):
 
         self.assertEqual(world.getSnakePosition(), SVector(2, 0))
 
-    
+    def test_givenDirectionLeft_moveLeft(self):
+        world = SWorld()
+        world.placeSnake(SVector(3, 0))
+        world.moveLeft()
+        world.tick()
+
+        self.assertEqual(world.getSnakePosition(), SVector(2, 0))
 
     
         

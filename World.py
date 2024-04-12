@@ -10,7 +10,7 @@ class SWorld:
         return self.snakeLocation
     
     def placeSnake(self, coords: SVector):
-        pass
+        self.snakeLocation = coords
 
     def tick(self):
         self.snakeLocation.x += self.snakeDirection.x
@@ -20,4 +20,4 @@ class SWorld:
         self.snakeDirection = SVector(1, 0)
 
     def moveLeft(self):
-        self.snakeDirection = SVector(0, 1)
+        self.snakeDirection = SVector(-1, 0)
