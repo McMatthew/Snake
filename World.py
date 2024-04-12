@@ -5,7 +5,7 @@ class SWorld:
     def __init__(self) -> None:
         self.snakeLocation : SVector = SVector()
         self.snakeDirection : SVector = SVector(0, 1)
-
+        
     def getSnakePosition(self)-> SVector:
         return self.snakeLocation
     
@@ -20,8 +20,9 @@ class SWorld:
         self.snakeDirection = SVector(1, 0)
 
     def moveLeft(self):
-        self.snakeDirection = SVector(-1, 0)
-
+        if self.snakeDirection != SVector(1, 0):
+            self.snakeDirection = SVector(-1, 0)
+        
     def moveUp(self):
         self.snakeDirection = SVector(0, -1)
 
