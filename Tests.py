@@ -67,6 +67,5 @@ class Tests(unittest.TestCase):
 
         self.assertEqual(world.getSnakePosition(), SVector(2, 0))
 
-
 if __name__ == '__main__':
     unittest.main()
