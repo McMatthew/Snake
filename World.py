@@ -17,8 +17,12 @@ class SWorld:
         self.snakeLocation.append(coords)
         if self.snakeDirection == self.__directionDown:
             self.snakeLocation.append(SVector(coords.x, coords.y -1))
-        else:
+
+        elif self.snakeDirection == self.__directionRight:
             self.snakeLocation.append(SVector(coords.x -1, coords.y))
+
+        elif self.snakeDirection == self.__directionUp: 
+            self.snakeLocation.append(SVector(coords.x, coords.y +1))
 
     def tick(self):
         self.snakeLocation[0].x += self.snakeDirection.x
