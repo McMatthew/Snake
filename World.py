@@ -17,20 +17,19 @@ class SWorld:
     def placeSnake(self, coords: SVector, bodycount: int = 1):
         self.snakePoints.append(coords)
         for multiplier in range(1,bodycount):
-            print(multiplier)
 
             shifter = SVector()
             if self.snakeDirection == self.__directionDown:
-                shifter = SVector(0, -1 * multiplier)                
+                shifter = SVector(0, self.__directionUp.y * multiplier)
 
             elif self.snakeDirection == self.__directionUp: 
-                shifter = SVector(0, 1 * multiplier)                
+                shifter = SVector(0, self.__directionDown.y * multiplier)
 
             elif self.snakeDirection == self.__directionRight:
-                shifter = SVector( -1 * multiplier, 0)                
+                shifter = SVector(self.__directionLeft.x * multiplier, 0)
 
             elif self.snakeDirection == self.__directionLeft:
-                shifter = SVector(1 * multiplier, 0)                
+                shifter = SVector(self.__directionRight.x * multiplier, 0)
 
             self.snakePoints.append(SVector(coords.x + shifter.x, coords.y + shifter.y))
 
