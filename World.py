@@ -3,7 +3,7 @@ import copy
 
 class SWorld:
     def __init__(self) -> None:
-        self.snakeLocation : list[SVector] = list()
+        self.snakePoints : list[SVector] = list()
         self.snakeDirection : SVector = SVector(0, 1)
         self.__directionUp: SVector = SVector(0, -1)
         self.__directionDown: SVector = SVector(0, 1)
@@ -12,28 +12,34 @@ class SWorld:
 
 
     def getSnakePosition(self)-> SVector:
-        return self.snakeLocation[0]
+        return self.snakePoints[0]
 
     def placeSnake(self, coords: SVector, bodycount: int = 1):
-        self.snakeLocation.append(coords)
+        self.snakePoints.append(coords)
+        for multiplier in range(1,bodycount):
+            print(multiplier)
 
-        if self.snakeDirection == self.__directionDown:
-            self.snakeLocation.append(SVector(coords.x, coords.y -1))
+            shifter = SVector()
+            if self.snakeDirection == self.__directionDown:
+                shifter = SVector(0, -1 * multiplier)                
 
-        elif self.snakeDirection == self.__directionUp: 
-            self.snakeLocation.append(SVector(coords.x, coords.y +1))
+            elif self.snakeDirection == self.__directionUp: 
+                shifter = SVector(0, 1 * multiplier)                
 
-        elif self.snakeDirection == self.__directionRight:
-            self.snakeLocation.append(SVector(coords.x -1, coords.y))
+            elif self.snakeDirection == self.__directionRight:
+                shifter = SVector( -1 * multiplier, 0)                
 
-        elif self.snakeDirection == self.__directionLeft:
-            self.snakeLocation.append(SVector(coords.x +1, coords.y))
+            elif self.snakeDirection == self.__directionLeft:
+                shifter = SVector(1 * multiplier, 0)                
+
+            self.snakePoints.append(SVector(coords.x + shifter.x, coords.y + shifter.y))
 
     def tick(self):
-        self.snakeLocation[1] = copy.deepcopy(self.snakeLocation[0])
-
-        self.snakeLocation[0].x += self.snakeDirection.x
-        self.snakeLocation[0].y += self.snakeDirection.y
+        newHead = copy.deepcopy(self.getHeadPosition())
+        self.snakePoints.pop()
+        newHead.x += self.snakeDirection.x
+        newHead.y += self.snakeDirection.y
+        self.snakePoints.insert(0,newHead)
 
     def moveRight(self):
         if self.snakeDirection is not self.__directionLeft:
@@ -52,9 +58,9 @@ class SWorld:
             self.snakeDirection = self.__directionDown
 
     
-    def getSnakeBodyPosition(self, bodycount: int):
-        return self.snakeLocation[1]
+    def getSnakeBodyPosition(self, bodyPartIndex: int):
+        return self.snakePoints[bodyPartIndex]
     
     def getHeadPosition(self):
-        return self.snakeLocation[0]
+        return self.snakePoints[0]
     

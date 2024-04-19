@@ -134,6 +134,16 @@ class Tests(unittest.TestCase):
         
         self.assertEqual(world.getSnakeBodyPosition(1), headPosition)
 
+    def test_placeSnakeWith3Section(self):
+        world = SWorld()
+        world.moveRight()
+        world.placeSnake(SVector(2, 1), 3)
+        world.tick()
+        tasil = world.getSnakeBodyPosition(2)
+        self.assertEqual(world.getSnakeBodyPosition(0), SVector(3, 1))
+        self.assertEqual(world.getSnakeBodyPosition(1), SVector(2, 1))
+        self.assertEqual(tasil, SVector(1, 1))
+
 
 if __name__ == '__main__':
     unittest.main()
