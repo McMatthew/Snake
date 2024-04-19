@@ -8,8 +8,8 @@ class Tests(unittest.TestCase):
         world.placeSnake(SVector(0, 0))
 
         self.assertEqual(world.getSnakePosition(), SVector(0, 0))
-    
-    def test_placingHeadTickingWorld_headMoveForward(self): 
+
+    def test_placingHeadTickingWorld_headMoveForward(self):
         world = SWorld()
         world.placeSnake(SVector(0, 0))
         world.tick()
@@ -48,7 +48,7 @@ class Tests(unittest.TestCase):
         world.tick()
 
         self.assertEqual(world.getSnakePosition(), SVector(0, 2))
-    
+
     def test_givenDirectionDown_moveDown(self):
         world = SWorld()
         world.placeSnake(SVector(0, 0))
@@ -96,6 +96,14 @@ class Tests(unittest.TestCase):
         world.tick()
 
         self.assertEqual(world.getSnakePosition(), SVector(1, 0))
+
+    def test_placeSnakeWith2Sections_bodyPartIsBehindHead(self):
+        world = SWorld()
+        world.placeSnake(SVector(0, 1), 2)
+        world.moveDown()
+
+        self.assertEqual(world.getSnakeBodyPosition(1), SVector(0,0))
+
 
 if __name__ == '__main__':
     unittest.main()
