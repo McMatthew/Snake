@@ -15,14 +15,18 @@ class SWorld:
 
     def placeSnake(self, coords: SVector, bodycount: int = 1):
         self.snakeLocation.append(coords)
+
         if self.snakeDirection == self.__directionDown:
             self.snakeLocation.append(SVector(coords.x, coords.y -1))
+
+        elif self.snakeDirection == self.__directionUp: 
+            self.snakeLocation.append(SVector(coords.x, coords.y +1))
 
         elif self.snakeDirection == self.__directionRight:
             self.snakeLocation.append(SVector(coords.x -1, coords.y))
 
-        elif self.snakeDirection == self.__directionUp: 
-            self.snakeLocation.append(SVector(coords.x, coords.y +1))
+        elif self.snakeDirection == self.__directionLeft:
+            self.snakeLocation.append(SVector(coords.x +1, coords.y))
 
     def tick(self):
         self.snakeLocation[0].x += self.snakeDirection.x

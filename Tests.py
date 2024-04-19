@@ -104,13 +104,6 @@ class Tests(unittest.TestCase):
 
         self.assertEqual(world.getSnakeBodyPosition(1), SVector(0,0))
 
-    def test_placeSnakeWith2SectionsOnRight_bodyPartIsOnTheLeft(self):
-        world = SWorld()
-        world.moveRight()
-        world.placeSnake(SVector(1, 1), 2)
-
-        self.assertEqual(world.getSnakeBodyPosition(1), SVector(0,1))
-    
     def test_placeSnakeWith2SectionsOnUp_bodyPartIsOnDown(self):
         world = SWorld()
         world.moveUp()
@@ -118,6 +111,23 @@ class Tests(unittest.TestCase):
 
         self.assertEqual(world.getSnakeBodyPosition(1) , SVector(1, 2))
 
+    def test_placeSnakeWith2SectionsOnRight_bodyPartIsOnTheLeft(self):
+        world = SWorld()
+        world.moveRight()
+        world.placeSnake(SVector(1, 1), 2)
+
+        self.assertEqual(world.getSnakeBodyPosition(1), SVector(0,1))
+    
+    def test_placeSnakeWith2SectionsOnLeft_bodyPartIsOnRight(self):
+        world = SWorld()
+        world.moveLeft()
+        world.placeSnake(SVector(1, 1) , 2)
+
+        self.assertEqual(world.getSnakeBodyPosition(1), SVector(2, 1))
+
+
+   
+    
 
 if __name__ == '__main__':
     unittest.main()
