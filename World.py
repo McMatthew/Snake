@@ -1,4 +1,5 @@
 from Vector import SVector
+import copy
 
 class SWorld:
     def __init__(self) -> None:
@@ -29,6 +30,8 @@ class SWorld:
             self.snakeLocation.append(SVector(coords.x +1, coords.y))
 
     def tick(self):
+        self.snakeLocation[1] = copy.deepcopy(self.snakeLocation[0])
+
         self.snakeLocation[0].x += self.snakeDirection.x
         self.snakeLocation[0].y += self.snakeDirection.y
 
@@ -48,5 +51,10 @@ class SWorld:
         if self.snakeDirection is not self.__directionUp:
             self.snakeDirection = self.__directionDown
 
+    
     def getSnakeBodyPosition(self, bodycount: int):
         return self.snakeLocation[1]
+    
+    def getHeadPosition(self):
+        return self.snakeLocation[0]
+    

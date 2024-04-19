@@ -3,5 +3,8 @@ class SVector:
         self.x: int = inX
         self.y: int = inY
 
+    def __str__(self) -> str:
+        return f"X: {self.x}, Y: {self.y}"
+    
     def __eq__(self, __value: object) -> bool:        
         return __value.x == self.x and __value.y == self.y

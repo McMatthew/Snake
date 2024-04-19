@@ -1,7 +1,6 @@
 # Snake <3
 import unittest
 from World import *
-
 class Tests(unittest.TestCase):
     def test_placingHead_shouldBeThere(self):
         world = SWorld()
@@ -121,13 +120,20 @@ class Tests(unittest.TestCase):
     def test_placeSnakeWith2SectionsOnLeft_bodyPartIsOnRight(self):
         world = SWorld()
         world.moveLeft()
-        world.placeSnake(SVector(1, 1) , 2)
+        world.placeSnake(SVector(1, 1), 2)
 
         self.assertEqual(world.getSnakeBodyPosition(1), SVector(2, 1))
 
+    def test_placeSnakeWith2SectionAndTicking_BodyFollowsHead(self):
+        world = SWorld()
+        world.moveRight()
+        world.placeSnake(SVector(1, 1), 2)
+        
+        headPosition = copy.deepcopy(world.getHeadPosition()) 
+        world.tick()
+        
+        self.assertEqual(world.getSnakeBodyPosition(1), headPosition)
 
-   
-    
 
 if __name__ == '__main__':
     unittest.main()
